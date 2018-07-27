@@ -40,6 +40,7 @@ namespace LemonadeStand
         {
             name = GetName();
             inventory = new Inventory();
+            priceOfLemonade = .25;
         }
 
         // Methods
@@ -65,6 +66,7 @@ namespace LemonadeStand
         {
             Console.WriteLine("How much would you like your lemonade to cost?");
             PriceOfLemonade = double.Parse(Console.ReadLine());
+            Console.WriteLine($"Lemonade is now ${PriceOfLemonade}.");
                
         }
     }

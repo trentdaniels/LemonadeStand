@@ -39,6 +39,7 @@
     <Compile Include="Inventory.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="Weather.cs" />
+    <Compile Include="Store.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
