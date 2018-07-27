@@ -5,7 +5,7 @@ namespace LemonadeStand
     {
         // Members
         //private Inventory inventory;
-        private double amountOfMoney;
+        private double availableMoney;
         private string name;
         private double priceOfLemonade;
 
@@ -24,11 +24,20 @@ namespace LemonadeStand
                 return name;
             }
         }
-
+        public double AvailableMoney
+        {
+            get {
+                return availableMoney;
+            }
+            set {
+                availableMoney = value;
+            }
+        }
         // Constructor
         public Player()
         {
             name = GetName();
+            AvailableMoney = 20;
         }
 
         // Methods
