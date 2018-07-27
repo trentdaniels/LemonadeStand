@@ -8,6 +8,7 @@ namespace LemonadeStand
         private double amountOfLemons;
         private double amountOfSugar;
         private double amountOfIce;
+        private double availableMoney;
 
         public double AmountOfCups
         {
@@ -53,6 +54,17 @@ namespace LemonadeStand
                 amountOfIce = value;
             }
         }
+        public double AvailableMoney
+        {
+            get
+            {
+                return availableMoney;
+            }
+            set
+            {
+                availableMoney = value;
+            }
+        }
 
 
         // Constructors
@@ -62,6 +74,8 @@ namespace LemonadeStand
             amountOfLemons = 0;
             amountOfSugar = 0;
             amountOfIce = 0;
+            availableMoney = 20;
+            Console.WriteLine("Initialized Inventory");
         }
 
         // Methods

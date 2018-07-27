@@ -4,8 +4,7 @@ namespace LemonadeStand
     public class Player
     {
         // Members
-        //private Inventory inventory;
-        private double availableMoney;
+        private Inventory inventory;
         private string name;
         private double priceOfLemonade;
 
@@ -19,25 +18,28 @@ namespace LemonadeStand
                 return priceOfLemonade;
             }
         }
-        public string Name {
-            get {
+        public string Name 
+        {
+            get 
+            {
                 return name;
             }
         }
-        public double AvailableMoney
+        public Inventory Inventory
         {
-            get {
-                return availableMoney;
+            get 
+            {
+                return inventory;
             }
-            set {
-                availableMoney = value;
-            }
+
         }
+
+
         // Constructor
         public Player()
         {
             name = GetName();
-            AvailableMoney = 20;
+            inventory = new Inventory();
         }
 
         // Methods
@@ -57,6 +59,13 @@ namespace LemonadeStand
             }
             return playerName;
 
+        }
+
+        public void SetPriceOfLemonade ()
+        {
+            Console.WriteLine("How much would you like your lemonade to cost?");
+            PriceOfLemonade = double.Parse(Console.ReadLine());
+               
         }
     }
 }

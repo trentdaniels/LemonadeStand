@@ -37,6 +37,8 @@
     <Compile Include="Game.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Inventory.cs" />
+    <Compile Include="Day.cs" />
+    <Compile Include="Weather.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
