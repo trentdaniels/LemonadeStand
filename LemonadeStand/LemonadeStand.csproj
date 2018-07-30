@@ -45,6 +45,7 @@
     <Compile Include="Sugar.cs" />
     <Compile Include="Ice.cs" />
     <Compile Include="Recipe.cs" />
+    <Compile Include="Customer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

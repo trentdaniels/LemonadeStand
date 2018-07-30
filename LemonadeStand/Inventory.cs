@@ -9,6 +9,7 @@ namespace LemonadeStand
         private Sugar sugar;
         private Ice ice;
         private double availableMoney;
+        private int pitchers;
 
         public Cup Cup
         {
@@ -50,6 +51,17 @@ namespace LemonadeStand
                 availableMoney = value;
             }
         }
+        public int Pitchers
+        {
+            get
+            {
+                return pitchers;
+            }
+            set
+            {
+                pitchers = value;
+            }
+        }
 
 
         // Constructors
@@ -59,10 +71,11 @@ namespace LemonadeStand
             lemon = new Lemon();
             sugar = new Sugar();
             cup = new Cup();
-            availableMoney = 20;
+            availableMoney = 20.00;
             Console.WriteLine("Initialized Inventory");
         }
 
         // Methods
+
     }
 }

@@ -10,6 +10,8 @@ namespace LemonadeStand
         private string name;
         private double priceOfLemonade;
         private Recipe recipe;
+
+
         public double PriceOfLemonade
         {
             set
@@ -114,41 +116,7 @@ namespace LemonadeStand
             }
             return true;
         }
-        public void HandleRecipeChange() 
-        {
-            string changeRecipe;
-            Console.WriteLine($"Your current recipe (per pitcher) is:\nCups: {recipe.CupsPerPitcher}\nLemons: {recipe.LemonsPerPitcher}\nCups of Sugar: {recipe.SugarPerPitcher}\nIce Cubes: {recipe.IcePerPitcher}");
-            Console.WriteLine("Would you like to change the recipe? [1]Yes or [2]No");
-            changeRecipe = Console.ReadLine();
 
-            switch(changeRecipe)
-            {
-                case "1":
-                    SetRecipeItem();
-                    Console.WriteLine($"New recipe is:\nCups: {recipe.CupsPerPitcher}\nLemons: {recipe.LemonsPerPitcher}\nCups of Sugar: {recipe.SugarPerPitcher}\nIce Cubes: {recipe.IcePerPitcher}");
-                    break;
-                case "2":
-                    Console.WriteLine("Recipe will be kept the same!");
-                    break;
-                default:
-                    Console.WriteLine("Invalid input please choose [1]Yes or [2]No");
-                    HandleRecipeChange();
-                    return;
-            }
-
-
-        }
-        public void SetRecipeItem()
-        {
-            Console.WriteLine("How many cups do you want to use?");
-            recipe.CupsPerPitcher = int.Parse(Console.ReadLine());
-            Console.WriteLine("How many lemons do you want to use?");
-            recipe.LemonsPerPitcher = int.Parse(Console.ReadLine());
-            Console.WriteLine("How many cups of sugar do you want to use?");
-            recipe.SugarPerPitcher = int.Parse(Console.ReadLine());
-            Console.WriteLine("How many ice cubes do you want to use?");
-            recipe.IcePerPitcher = int.Parse(Console.ReadLine());
-        }
     }
 
 }

@@ -9,6 +9,7 @@ namespace LemonadeStand
         private int temperature;
         private List<string> possibleForecasts;
 
+
         public int Temperature
         {
             get

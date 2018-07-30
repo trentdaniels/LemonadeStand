@@ -8,6 +8,7 @@ namespace LemonadeStand
         // Members
         private Weather weather;
         private int dayNumber;
+        private Customer customer;
 
         public int DayNumber
         {

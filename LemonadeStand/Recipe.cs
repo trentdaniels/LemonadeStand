@@ -4,53 +4,42 @@ namespace LemonadeStand
     public class Recipe
     {
         // Members
-        private int cupsPerPitcher;
-        private int lemonsPerPitcher;
-        private int sugarPerPitcher;
-        private int icePerPitcher;
+        private int lemonsPerCup;
+        private int sugarPerCup;
+        private int icePerCup;
 
-        public int CupsPerPitcher
+
+        public int LemonsPerCup
         {
             get
             {
-                return cupsPerPitcher;
+                return lemonsPerCup;
             }
             set
             {
-                cupsPerPitcher = value;
+                lemonsPerCup = value;
             }
         }
-        public int LemonsPerPitcher
+        public int SugarPerCup
         {
             get
             {
-                return lemonsPerPitcher;
+                return sugarPerCup;
             }
             set
             {
-                lemonsPerPitcher = value;
+                sugarPerCup = value;
             }
         }
-        public int SugarPerPitcher
+        public int IcePerCup
         {
             get
             {
-                return sugarPerPitcher;
+                return icePerCup;
             }
             set
             {
-                sugarPerPitcher = value;
-            }
-        }
-        public int IcePerPitcher
-        {
-            get
-            {
-                return icePerPitcher;
-            }
-            set
-            {
-                icePerPitcher = value;
+                icePerCup = value;
 
             }
         }
@@ -58,13 +47,45 @@ namespace LemonadeStand
         // Constructors
         public Recipe()
         {
-            cupsPerPitcher = 4;
-            lemonsPerPitcher = 4;
-            sugarPerPitcher = 4;
-            icePerPitcher = 4;
+            lemonsPerCup = 4;
+            sugarPerCup = 4;
+            icePerCup = 4;
             
         }
 
         // Methods
+        public void HandleRecipeChange()
+        {
+            string changeRecipe;
+            Console.WriteLine($"Your current recipe (per cup) is:\nLemons: {LemonsPerCup}\nCups of Sugar: {SugarPerCup}\nIce Cubes: {IcePerCup}");
+            Console.WriteLine("Would you like to change the recipe? [1]Yes or [2]No");
+            changeRecipe = Console.ReadLine();
+
+            switch (changeRecipe)
+            {
+                case "1":
+                    SetRecipeItem();
+                    Console.WriteLine($"New recipe is:\nLemons: {LemonsPerCup}\nCups of Sugar: {SugarPerCup}\nIce Cubes: {IcePerCup}");
+                    break;
+                case "2":
+                    Console.WriteLine("Recipe will be kept the same!");
+                    break;
+                default:
+                    Console.WriteLine("Invalid input please choose [1]Yes or [2]No");
+                    HandleRecipeChange();
+                    return;
+            }
+
+
+        }
+        public void SetRecipeItem()
+        {
+            Console.WriteLine("How many lemons do you want to use?");
+            LemonsPerCup = int.Parse(Console.ReadLine());
+            Console.WriteLine("How many cups of sugar do you want to use?");
+            SugarPerCup = int.Parse(Console.ReadLine());
+            Console.WriteLine("How many ice cubes do you want to use?");
+            IcePerCup = int.Parse(Console.ReadLine());
+        }
     }
 }

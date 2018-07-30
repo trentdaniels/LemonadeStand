@@ -5,7 +5,6 @@ namespace LemonadeStand
     {
         // Members
         private Player player;
-        //private Customer customer; 
         private Day day;
         public Random random;
         private int daysOfGameplay;
@@ -36,6 +35,9 @@ namespace LemonadeStand
             RunStore();
             RunRecipe();
 
+            //DisplayDayResults();
+            //IncrementDay();
+
         }
         private void DisplayWelcomeMessage()
         {
@@ -44,7 +46,7 @@ namespace LemonadeStand
 
         private void DisplayInventory(Inventory inventory)
         {
-            Console.WriteLine($"You have {inventory.Cup.Amount} cups, {inventory.Lemon.Amount} lemons, {inventory.Sugar.Amount} cups of sugar, and {inventory.Ice.Amount} ice cubes.");
+            Console.WriteLine($"You have {inventory.Cup.Amount} {inventory.Cup.Name}, {inventory.Lemon.Amount} {inventory.Lemon.Name}, {inventory.Sugar.Amount} {inventory.Sugar.Name}, and {inventory.Ice.Amount} {inventory.Ice.Name}.");
         }
 
 
@@ -93,8 +95,14 @@ namespace LemonadeStand
         }
         private void RunRecipe()
         {
-            player.HandleRecipeChange();
+            player.Recipe.HandleRecipeChange();
             player.SetPriceOfLemonade();
+        }
+        private void DisplayDayResults() 
+        {
+            Console.WriteLine($"At the end of the day, you now have {player.Inventory.AvailableMoney}.");
+            Console.WriteLine($"You also have:\n{player.Inventory.Cup.Amount} {player.Inventory.Cup.Name}\n{player.Inventory.Lemon.Amount} {player.Inventory.Lemon.Name}\n{player.Inventory.Sugar.Amount} {player.Inventory.Sugar.Name}\n{player.Inventory.Ice.Amount} {player.Inventory.Ice.Name}");
+
         }
     }
 }
