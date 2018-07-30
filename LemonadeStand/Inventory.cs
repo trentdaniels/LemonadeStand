@@ -4,54 +4,39 @@ namespace LemonadeStand
     public class Inventory
     {
         // Members
-        private double amountOfCups;
-        private double amountOfLemons;
-        private double amountOfSugar;
-        private double amountOfIce;
+        private Cups cups;
+        private Lemons lemons;
+        private Sugar sugar;
+        private Ice ice;
         private double availableMoney;
 
-        public double AmountOfCups
+        public Cups Cups
         {
             get
             {
-                return amountOfCups;
-            }
-            set
-            {
-                amountOfCups = value;
+                return cups;
             }
         }
-        public double AmountOfLemons
+        public Lemons Lemons
         {
             get
             {
-                return amountOfLemons;
+                return lemons;
             }
-            set
+           
+        }
+        public Sugar Sugar
+        {
+            get
             {
-                amountOfLemons = value;
+                return sugar;
             }
         }
-        public double AmountOfSugar
+        public Ice Ice
         {
             get
             {
-                return amountOfSugar;
-            }
-            set
-            {
-                amountOfSugar = value;
-            }
-        }
-        public double AmountOfIce
-        {
-            get
-            {
-                return amountOfIce;
-            }
-            set
-            {
-                amountOfIce = value;
+                return ice;
             }
         }
         public double AvailableMoney
@@ -70,10 +55,10 @@ namespace LemonadeStand
         // Constructors
         public Inventory()
         {
-            amountOfCups = 0;
-            amountOfLemons = 0;
-            amountOfSugar = 0;
-            amountOfIce = 0;
+            ice = new Ice();
+            lemons = new Lemons();
+            sugar = new Sugar();
+            cups = new Cups();
             availableMoney = 20;
             Console.WriteLine("Initialized Inventory");
         }

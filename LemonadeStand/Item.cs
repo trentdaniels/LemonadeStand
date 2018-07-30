@@ -4,9 +4,9 @@ namespace LemonadeStand
     public abstract class Item
     {
         
-        public int  amount;
-        public string name;
-        public double price;
+        protected int  amount;
+        protected string name;
+        protected double price;
 
         public int Amount 
         {

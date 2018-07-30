@@ -46,7 +46,7 @@ namespace LemonadeStand
 
         private void DisplayInventory(Inventory inventory)
         {
-            Console.WriteLine($"You have {inventory.AmountOfCups} cups, {inventory.AmountOfLemons} lemons, {inventory.AmountOfSugar} cups of sugar, and {inventory.AmountOfCups} ice cubes.");
+            Console.WriteLine($"You have {inventory.Cups.Amount} cups, {inventory.Lemons.Amount} lemons, {inventory.Sugar.Amount} cups of sugar, and {inventory.Ice.Amount} ice cubes.");
         }
 
 
@@ -87,11 +87,10 @@ namespace LemonadeStand
         }
         private void RunStore() 
         {
-            int updatedCups = player.BuyCups(store);
-            int updatedLemons = player.BuyLemons(store);
-            int updatedSugar = player.BuySugar(store);
-            int updatedIce = player.BuyIce(store);
-            Console.WriteLine($"You bought {updatedCups} cups. You have {player.Inventory.AvailableMoney} left!");
+            int updatedCups = player.BuyFood(player.Inventory.Cups);
+            int updatedLemons = player.BuyFood(player.Inventory.Lemons);
+            int updatedSugar = player.BuyFood(player.Inventory.Sugar);
+            int updatedIce = player.BuyFood(player.Inventory.Ice);
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace LemonadeStand
 {
     public class Player
@@ -8,26 +10,27 @@ namespace LemonadeStand
         private string name;
         private double priceOfLemonade;
 
-        public double PriceOfLemonade {
-            set 
+        public double PriceOfLemonade
+        {
+            set
             {
                 priceOfLemonade = value;
             }
-            get 
+            get
             {
                 return priceOfLemonade;
             }
         }
-        public string Name 
+        public string Name
         {
-            get 
+            get
             {
                 return name;
             }
         }
         public Inventory Inventory
         {
-            get 
+            get
             {
                 return inventory;
             }
@@ -62,36 +65,34 @@ namespace LemonadeStand
 
         }
 
-        public void SetPriceOfLemonade ()
+        public void SetPriceOfLemonade()
         {
             Console.WriteLine("How much would you like your lemonade to cost?");
             PriceOfLemonade = double.Parse(Console.ReadLine());
             Console.WriteLine($"Lemonade is now ${PriceOfLemonade}.");
-               
+
         }
-        public int BuyCups(Store store) 
+        public int BuyFood(Item item)
         {
             int amountToBuy;
 
-            Console.WriteLine($"You have {inventory.AmountOfCups} cups and ${inventory.AvailableMoney} available.");
-            Console.WriteLine($"How many cups ({store.CupPrice} per cup) would you like to purchase?");
+            Console.WriteLine($"You have {item.Amount} {item.Name} and ${inventory.AvailableMoney} available.");
+            Console.WriteLine($"How many {item.Name} would you like to buy (${item.Price} each)?");
             amountToBuy = int.Parse(Console.ReadLine());
-            if (!AbleToBuy(amountToBuy, store.CupPrice))
+            if (!AbleToBuy(amountToBuy, item.Price))
             {
-                return BuyCups(store);
+                return BuyFood(item);
             }
-            inventory.AmountOfCups += amountToBuy;
-            inventory.AvailableMoney -= amountToBuy * store.CupPrice;
+            item.Amount += amountToBuy;
+            inventory.AvailableMoney -= amountToBuy * item.Price;
 
+            Console.WriteLine($"You now have {item.Amount} {item.Name}!");
             return amountToBuy;
 
 
         }
-        public void CalculateTransaction() 
-        {
-            
-        }
-        public bool AbleToBuy( int amountOfFood, double price)
+
+        public bool AbleToBuy(int amountOfFood, double price)
         {
             if (amountOfFood * price > inventory.AvailableMoney)
             {
@@ -101,4 +102,6 @@ namespace LemonadeStand
             return true;
         }
     }
+
 }
+

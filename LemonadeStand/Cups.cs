@@ -7,7 +7,7 @@ namespace LemonadeStand
         public Cups()
         {
             price = .03;
-            name = "cup";
+            name = "cups";
             amount = 0;
 
                     
