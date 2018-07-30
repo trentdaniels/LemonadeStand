@@ -91,6 +91,7 @@ namespace LemonadeStand
             int updatedLemons = player.BuyFood(player.Inventory.Lemons);
             int updatedSugar = player.BuyFood(player.Inventory.Sugar);
             int updatedIce = player.BuyFood(player.Inventory.Ice);
+            Console.WriteLine($"You now have:\n{player.Inventory.Cups.Amount} {player.Inventory.Cups.Name}\n{player.Inventory.Lemons.Amount} {player.Inventory.Lemons.Name}\n{player.Inventory.Sugar.Amount} {player.Inventory.Sugar.Name}\n{player.Inventory.Ice.Amount} {player.Inventory.Ice.Name}\n");
         }
     }
 }
