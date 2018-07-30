@@ -35,8 +35,8 @@ namespace LemonadeStand
             day = new Day(random);
             DisplayWeather(day, day.Weather);
             DisplayInventory(player.Inventory);
-            player.SetPriceOfLemonade();
             RunStore();
+            RunRecipe();
 
         }
         private void DisplayWelcomeMessage()
@@ -46,7 +46,7 @@ namespace LemonadeStand
 
         private void DisplayInventory(Inventory inventory)
         {
-            Console.WriteLine($"You have {inventory.Cups.Amount} cups, {inventory.Lemons.Amount} lemons, {inventory.Sugar.Amount} cups of sugar, and {inventory.Ice.Amount} ice cubes.");
+            Console.WriteLine($"You have {inventory.Cup.Amount} cups, {inventory.Lemon.Amount} lemons, {inventory.Sugar.Amount} cups of sugar, and {inventory.Ice.Amount} ice cubes.");
         }
 
 
@@ -87,11 +87,15 @@ namespace LemonadeStand
         }
         private void RunStore() 
         {
-            int updatedCups = player.BuyFood(player.Inventory.Cups);
-            int updatedLemons = player.BuyFood(player.Inventory.Lemons);
+            int updatedCups = player.BuyFood(player.Inventory.Cup);
+            int updatedLemons = player.BuyFood(player.Inventory.Lemon);
             int updatedSugar = player.BuyFood(player.Inventory.Sugar);
             int updatedIce = player.BuyFood(player.Inventory.Ice);
-            Console.WriteLine($"You now have:\n{player.Inventory.Cups.Amount} {player.Inventory.Cups.Name}\n{player.Inventory.Lemons.Amount} {player.Inventory.Lemons.Name}\n{player.Inventory.Sugar.Amount} {player.Inventory.Sugar.Name}\n{player.Inventory.Ice.Amount} {player.Inventory.Ice.Name}\n");
+            Console.WriteLine($"You now have:\n{player.Inventory.Cup.Amount} {player.Inventory.Cup.Name}\n{player.Inventory.Lemon.Amount} {player.Inventory.Lemon.Name}\n{player.Inventory.Sugar.Amount} {player.Inventory.Sugar.Name}\n{player.Inventory.Ice.Amount} {player.Inventory.Ice.Name}\n");
+        }
+        private void RunRecipe()
+        {
+            player.SetPriceOfLemonade();
         }
     }
 }

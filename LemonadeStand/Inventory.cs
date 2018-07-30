@@ -4,24 +4,24 @@ namespace LemonadeStand
     public class Inventory
     {
         // Members
-        private Cups cups;
-        private Lemons lemons;
+        private Cup cup;
+        private Lemon lemon;
         private Sugar sugar;
         private Ice ice;
         private double availableMoney;
 
-        public Cups Cups
+        public Cup Cup
         {
             get
             {
-                return cups;
+                return cup;
             }
         }
-        public Lemons Lemons
+        public Lemon Lemon
         {
             get
             {
-                return lemons;
+                return lemon;
             }
            
         }
@@ -56,9 +56,9 @@ namespace LemonadeStand
         public Inventory()
         {
             ice = new Ice();
-            lemons = new Lemons();
+            lemon = new Lemon();
             sugar = new Sugar();
-            cups = new Cups();
+            cup = new Cup();
             availableMoney = 20;
             Console.WriteLine("Initialized Inventory");
         }

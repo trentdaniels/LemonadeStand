@@ -9,7 +9,7 @@ namespace LemonadeStand
         private Inventory inventory;
         private string name;
         private double priceOfLemonade;
-
+        private Recipe recipe;
         public double PriceOfLemonade
         {
             set
@@ -35,6 +35,13 @@ namespace LemonadeStand
                 return inventory;
             }
 
+        }
+        public Recipe Recipe
+        {
+            get
+            {
+                return recipe;
+            }
         }
 
 
@@ -101,6 +108,7 @@ namespace LemonadeStand
             }
             return true;
         }
+        public 
     }
 
 }
