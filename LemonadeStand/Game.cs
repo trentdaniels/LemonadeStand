@@ -30,7 +30,7 @@ namespace LemonadeStand
         private void RunGame()
         {
             day = new Day(random);
-            DisplayWeather(day, day.Weather);
+            DisplayWeather(day);
             DisplayInventory(player.Inventory);
             RunStore();
             RunRecipe();
@@ -51,10 +51,10 @@ namespace LemonadeStand
 
 
 
-        private void DisplayWeather(Day today, Weather weather)
+        private void DisplayWeather(Day today)
         {
-            int temperature = today.GetTemperature();
-            string forecast = today.GetWeatherForecast(weather.PossibleForecasts, random);
+            int temperature = today.Weather.Temperature;
+            string forecast = today.Weather.Forecast;
             Console.WriteLine($"Day {today.DayNumber}'s weather is {temperature} degrees and {forecast}.");
             today.CreateCustomers(random);
         }
