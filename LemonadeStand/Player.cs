@@ -51,6 +51,7 @@ namespace LemonadeStand
             name = GetName();
             inventory = new Inventory();
             priceOfLemonade = .25;
+            recipe = new Recipe();
         }
 
         // Methods
@@ -90,6 +91,11 @@ namespace LemonadeStand
             {
                 return BuyFood(item);
             }
+            if (amountToBuy < 0)
+            {
+                Console.WriteLine("Invalid input. Please choose a non-negative amount to buy");
+                return BuyFood(item);
+            }
             item.Amount += amountToBuy;
             inventory.AvailableMoney -= amountToBuy * item.Price;
 
@@ -108,7 +114,11 @@ namespace LemonadeStand
             }
             return true;
         }
-        public 
+        public void SetRecipe() 
+        {
+            Console.WriteLine($"Your current recipe (per pitcher) is:\nCups: {recipe.CupsPerPitcher}\nLemons: {recipe.LemonsPerPitcher}\nCups of Sugar: {recipe.SugarPerPitcher}\nIce Cubes: {recipe.IcePerPitcher}");
+
+        }
     }
 
 }
