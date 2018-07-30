@@ -26,15 +26,12 @@ namespace LemonadeStand
         // Methods
         public void BuyLemonade(Player player) 
         {
-            // When customer buys food, decrease Player cups by 1. CupCount can be the name
-            // Create another function that checks if customer will buy
-            // Keep track of how many cups get bought
-            // If cups bought equals recipe cups, then decrease player inventory counts for all other ingredients by the recipe count
+            player.Inventory.Cup.Amount--;
+            player.Inventory.Lemon.Amount -= player.Recipe.LemonsPerCup;
+            player.Inventory.Ice.Amount -= player.Recipe.IcePerCup;
+            player.Inventory.Sugar.Amount -= player.Recipe.SugarPerCup;
         }
-        private bool WillCustomerBuy(Weather)
-        {
-            
-        }
+
 
 
     }
