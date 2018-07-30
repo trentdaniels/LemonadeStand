@@ -56,6 +56,7 @@ namespace LemonadeStand
             int temperature = today.GetTemperature();
             string forecast = today.GetWeatherForecast(weather.PossibleForecasts, random);
             Console.WriteLine($"Day {today.DayNumber}'s weather is {temperature} degrees and {forecast}.");
+            today.CreateCustomers(random);
         }
         private int GetDaysToPlay ()
         {

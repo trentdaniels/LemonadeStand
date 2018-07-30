@@ -8,7 +8,7 @@ namespace LemonadeStand
         // Members
         private Weather weather;
         private int dayNumber;
-        private Customer customer;
+        private List<Customer> customers;
 
         public int DayNumber
         {
@@ -34,6 +34,7 @@ namespace LemonadeStand
         {
             weather = new Weather(random);
             dayNumber = 1;
+
         }
 
         // Methods
@@ -44,6 +45,17 @@ namespace LemonadeStand
         public string GetWeatherForecast(List<string> forecasts, Random randomIndex)
         {
             return forecasts[randomIndex.Next(0, forecasts.Count)];
+        }
+
+        public void CreateCustomers(Random random)
+        {
+            customers = new List<Customer>() { };
+            for (int i = 0; i < Weather.Temperature + random.Next(0,15); i++)
+            {
+                customers.Add(new Customer());
+
+            }
+            Console.WriteLine($"There are a possible {customers.Count} customers coming today!");
         }
     }
 }
