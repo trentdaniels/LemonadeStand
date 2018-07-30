@@ -62,13 +62,27 @@ namespace LemonadeStand
             return temperatureDeductible;
         }
 
-        //private int DetermineForecastDeductible (Day day, Random random)
-        //{
-        //    int forecastDeductible;
+        private int DetermineForecastDeductible (Day day, Random random)
+        {
+            int forecastDeductible;
 
-        //    switch(day.Weather.Forecast){}
-        //    return forecastDeductible;
-        //}
+            switch(day.Weather.Forecast)
+            {
+                case "sunny":
+                    forecastDeductible = random.Next(0, 8);
+                    return forecastDeductible;
+                case "clear":
+                    forecastDeductible = random.Next(8, 15);
+                    return forecastDeductible;
+                case "cloudy":
+                    forecastDeductible = random.Next(15, 23);
+                    return forecastDeductible;
+                case "rainy":
+                    forecastDeductible = random.Next(20, 30);
+                    return forecastDeductible;
+            }
+
+        }
 
     }
 }
