@@ -15,6 +15,10 @@ namespace LemonadeStand
             {
                 return dayNumber;
             }
+            set
+            {
+                dayNumber = value;
+            }
         }
         public Weather Weather
         {

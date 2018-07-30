@@ -69,5 +69,36 @@ namespace LemonadeStand
             Console.WriteLine($"Lemonade is now ${PriceOfLemonade}.");
                
         }
+        public int BuyCups(Store store) 
+        {
+            int amountToBuy;
+
+            Console.WriteLine($"You have {inventory.AmountOfCups} cups and ${inventory.AvailableMoney} available.");
+            Console.WriteLine($"How many cups ({store.CupPrice} per cup) would you like to purchase?");
+            amountToBuy = int.Parse(Console.ReadLine());
+            if (!AbleToBuy(amountToBuy, store.CupPrice))
+            {
+                return BuyCups(store);
+            }
+            inventory.AmountOfCups += amountToBuy;
+            inventory.AvailableMoney -= amountToBuy * store.CupPrice;
+
+            return amountToBuy;
+
+
+        }
+        public void CalculateTransaction() 
+        {
+            
+        }
+        public bool AbleToBuy( int amountOfFood, double price)
+        {
+            if (amountOfFood * price > inventory.AvailableMoney)
+            {
+                Console.WriteLine("Cannot buy this many due to lack of funds");
+                return false;
+            }
+            return true;
+        }
     }
 }

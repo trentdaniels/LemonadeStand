@@ -7,7 +7,7 @@ namespace LemonadeStand
         private Player player;
         //private Customer customer; 
         private Day day;
-        //private Store store;
+        private Store store;
         public Random random;
         private int daysOfGameplay;
 
@@ -15,6 +15,7 @@ namespace LemonadeStand
         public Game()
         {
             random = new Random();
+            store = new Store();
             SetUpGame();
             RunGame();
 
@@ -35,6 +36,8 @@ namespace LemonadeStand
             DisplayWeather(day, day.Weather);
             DisplayInventory(player.Inventory);
             player.SetPriceOfLemonade();
+            RunStore();
+
         }
         private void DisplayWelcomeMessage()
         {
@@ -77,6 +80,18 @@ namespace LemonadeStand
                     return GetDaysToPlay();
             }
 
+        }
+        private void IncrementDay () 
+        {
+            day.DayNumber++;
+        }
+        private void RunStore() 
+        {
+            int updatedCups = player.BuyCups(store);
+            int updatedLemons = player.BuyLemons(store);
+            int updatedSugar = player.BuySugar(store);
+            int updatedIce = player.BuyIce(store);
+            Console.WriteLine($"You bought {updatedCups} cups. You have {player.Inventory.AvailableMoney} left!");
         }
     }
 }

@@ -4,43 +4,50 @@ namespace LemonadeStand
     public class Store
     {
         // Members
-        private double cupPrice;
-        private double lemonPrice;
-        private double sugarPrice;
-        private double icePrice;
+        private Cups cups;
+        private Lemons lemons;
+        private Sugar sugar;
+        private Ice ice;
 
-        public double CupPrice
+        public Cups Cups
         {
             get
             {
-                return cupPrice;
+                return cups;
             }
         }
-        public double LemonPrice
+        public Lemons Lemons
         {
             get
             {
-                return lemonPrice;
+                return lemons;
             }
         }
-        public double SugarPrice
+        public Sugar Sugar
         {
             get
             {
-                return sugarPrice;
+                return sugar;
             }
         }
-        public double IcePrice
+        public Ice Ice
         {
             get
             {
-                return icePrice;
+                return ice;
             }
         }
+
+
 
         // Constructors
         public Store()
         {
+            cups = new Cups();
+            lemons = new Lemons();
+            sugar = new Sugar();
+            ice = new Ice();
+            Console.WriteLine("Initialized Store.");
         }
 
         // Methods
