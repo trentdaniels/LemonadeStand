@@ -1,10 +1,10 @@
 ﻿using System;
 namespace LemonadeStand
 {
-    public class Cups : Item
+    public class Cup: Item
     {
         
-        public Cups()
+        public Cup()
         {
             price = .03;
             name = "cups";

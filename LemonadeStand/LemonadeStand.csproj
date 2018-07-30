@@ -39,7 +39,6 @@
     <Compile Include="Inventory.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="Weather.cs" />
-    <Compile Include="Store.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Cup.cs" />
     <Compile Include="Lemon.cs" />

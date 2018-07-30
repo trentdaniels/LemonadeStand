@@ -7,7 +7,6 @@ namespace LemonadeStand
         private Player player;
         //private Customer customer; 
         private Day day;
-        private Store store;
         public Random random;
         private int daysOfGameplay;
 
@@ -15,7 +14,6 @@ namespace LemonadeStand
         public Game()
         {
             random = new Random();
-            store = new Store();
             SetUpGame();
             RunGame();
 
@@ -95,6 +93,7 @@ namespace LemonadeStand
         }
         private void RunRecipe()
         {
+            player.HandleRecipeChange();
             player.SetPriceOfLemonade();
         }
     }
