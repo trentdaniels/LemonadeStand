@@ -32,6 +32,7 @@ namespace LemonadeStand
                 player.Inventory.Lemon.Amount -= player.Recipe.LemonsPerCup;
                 player.Inventory.Ice.Amount -= player.Recipe.IcePerCup;
                 player.Inventory.Sugar.Amount -= player.Recipe.SugarPerCup;
+                player.Inventory.AvailableMoney += player.PriceOfLemonade;
             }
 
         }

@@ -29,14 +29,19 @@ namespace LemonadeStand
 
         private void RunGame()
         {
-            day = new Day(random);
-            DisplayWeather(day);
-            DisplayInventory(player.Inventory);
-            RunStore();
-            RunRecipe();
-            RunDay();
-            DisplayDayResults();
-            IncrementDay();
+            do
+            {
+                day = new Day(random);
+                DisplayWeather(day);
+                DisplayInventory(player.Inventory);
+                RunStore();
+                RunRecipe();
+                RunDay();
+                DisplayDayResults();
+                IncrementDay();
+            }
+            while (day.DayNumber <= daysOfGameplay);
+
 
         }
         private void DisplayWelcomeMessage()
@@ -88,11 +93,30 @@ namespace LemonadeStand
         }
         private void RunStore() 
         {
-            int updatedCups = player.BuyFood(player.Inventory.Cup);
-            int updatedLemons = player.BuyFood(player.Inventory.Lemon);
-            int updatedSugar = player.BuyFood(player.Inventory.Sugar);
-            int updatedIce = player.BuyFood(player.Inventory.Ice);
+            if(needsSupplies)
+            {
+                int updatedCups = player.BuyFood(player.Inventory.Cup);
+                int updatedLemons = player.BuyFood(player.Inventory.Lemon);
+                int updatedSugar = player.BuyFood(player.Inventory.Sugar);
+                int updatedIce = player.BuyFood(player.Inventory.Ice); 
+            }
             Console.WriteLine($"You now have:\n{player.Inventory.Cup.Amount} {player.Inventory.Cup.Name}\n{player.Inventory.Lemon.Amount} {player.Inventory.Lemon.Name}\n{player.Inventory.Sugar.Amount} {player.Inventory.Sugar.Name}\n{player.Inventory.Ice.Amount} {player.Inventory.Ice.Name}\n");
+        }
+        private bool needsSupplies()
+        {
+            string needsSuppliesInput;
+            Console.WriteLine("Do you want to go to the store? [1]Yes or [2]No");
+            switch(needsSuppliesInput)
+            {
+                case: "1":
+                    return true;
+                case: "2":
+                    return false;
+                default:
+                    Console.WriteLine("Invalid input. Please choose [1]Yes or [2]No");
+                    return needsSupplies();
+            }
+
         }
         private void RunRecipe()
         {
@@ -111,7 +135,7 @@ namespace LemonadeStand
             foreach(Customer customer in day.Customers)
             {
                 customer.BuyLemonade(random, day, player);
-                if(CheckForSellout())
+                if(CheckForSellout(player.Inventory.Cup) || CheckForSellout(player.Inventory.Ice) || CheckForSellout(player.Inventory.Lemon) || CheckForSellout(player.Inventory.Sugar))
                 {
                     break;
                 }
@@ -120,32 +144,15 @@ namespace LemonadeStand
             }
 
         }
-        private bool CheckForSellout()
+        private bool CheckForSellout(Item item)
         {
-            if (player.Inventory.Cup.Amount < 0)
+            if (item.Amount < 0)
             {
-                Console.WriteLine($"Sold out of {player.Inventory.Cup.Name}..");
-                player.Inventory.Cup.Amount = 0;
+                Console.WriteLine($"Sold out of {item.Name}..");
+                item.Amount = 0;
                 return true;
             }
-            if (player.Inventory.Lemon.Amount < 0)
-            {
-                Console.WriteLine($"Sold out of {player.Inventory.Lemon.Name}..");
-                player.Inventory.Lemon.Amount = 0;
-                return true;
-            }
-            if (player.Inventory.Sugar.Amount < 0)
-            {
-                Console.WriteLine($"Sold out of {player.Inventory.Sugar.Name}..");
-                player.Inventory.Sugar.Amount = 0;
-                return true;
-            }
-            if (player.Inventory.Ice.Amount < 0)
-            {
-                Console.WriteLine($"Sold out of {player.Inventory.Ice.Name}..");
-                player.Inventory.Ice.Amount = 0;
-                return true;
-            }
+
             return false;
         }
     }
