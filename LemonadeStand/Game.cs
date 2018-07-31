@@ -9,7 +9,7 @@ namespace LemonadeStand
         private Day day;
         public Random random;
         private int daysOfGameplay;
-        public List<Player> players;
+        private List<Player> players;
 
         // Costructor
         public Game()

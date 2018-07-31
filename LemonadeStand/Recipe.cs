@@ -80,12 +80,43 @@ namespace LemonadeStand
         }
         public void SetRecipeItem(Lemon lemon, Sugar sugar, Ice ice)
         {
+            int amountOfLemons;
+            int amountOfSugar;
+            int amountOfIce;
+
             Console.WriteLine($"How many {lemon.Name} do you want to use?");
-            LemonsPerCup = int.Parse(Console.ReadLine());
+            if (int.TryParse(Console.ReadLine(), out amountOfLemons))
+            {
+                LemonsPerCup = amountOfLemons; 
+            }
+            else
+            {
+                UserInterface.DisplayErrorMessage();
+                SetRecipeItem(lemon, sugar, ice);
+                return;
+            }
             Console.WriteLine($"How many {sugar.Name} do you want to use?");
-            SugarPerCup = int.Parse(Console.ReadLine());
+            if (int.TryParse(Console.ReadLine(), out amountOfSugar))
+            {
+                SugarPerCup = amountOfSugar;
+            }
+            else
+            {
+                UserInterface.DisplayErrorMessage();
+                SetRecipeItem(lemon, sugar, ice);
+                return;
+            }
             Console.WriteLine($"How many {ice.Name} do you want to use?");
-            IcePerCup = int.Parse(Console.ReadLine());
+            if (int.TryParse(Console.ReadLine(), out amountOfIce))
+            {
+                IcePerCup = amountOfIce;
+            }
+            else
+            {
+                UserInterface.DisplayErrorMessage();
+                SetRecipeItem(lemon, sugar, ice);
+                return;
+            }
         }
     }
 }
