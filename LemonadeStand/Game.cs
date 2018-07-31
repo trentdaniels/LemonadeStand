@@ -29,9 +29,10 @@ namespace LemonadeStand
 
         private void RunGame()
         {
-            do
+            for (int i = 1; i <= daysOfGameplay; i++)
             {
                 day = new Day(random);
+                day.DayNumber = i;
                 DisplayWeather(day);
                 DisplayInventory(player.Inventory);
                 RunStore();
@@ -40,7 +41,6 @@ namespace LemonadeStand
                 DisplayDayResults();
                 IncrementDay();
             }
-            while (day.DayNumber <= daysOfGameplay);
 
 
         }
@@ -93,7 +93,7 @@ namespace LemonadeStand
         }
         private void RunStore() 
         {
-            if(needsSupplies)
+            if(NeedsSupplies())
             {
                 int updatedCups = player.BuyFood(player.Inventory.Cup);
                 int updatedLemons = player.BuyFood(player.Inventory.Lemon);
@@ -102,19 +102,20 @@ namespace LemonadeStand
             }
             Console.WriteLine($"You now have:\n{player.Inventory.Cup.Amount} {player.Inventory.Cup.Name}\n{player.Inventory.Lemon.Amount} {player.Inventory.Lemon.Name}\n{player.Inventory.Sugar.Amount} {player.Inventory.Sugar.Name}\n{player.Inventory.Ice.Amount} {player.Inventory.Ice.Name}\n");
         }
-        private bool needsSupplies()
+        private bool NeedsSupplies()
         {
             string needsSuppliesInput;
             Console.WriteLine("Do you want to go to the store? [1]Yes or [2]No");
+            needsSuppliesInput = Console.ReadLine();
             switch(needsSuppliesInput)
             {
-                case: "1":
+                case "1":
                     return true;
-                case: "2":
+                case "2":
                     return false;
                 default:
                     Console.WriteLine("Invalid input. Please choose [1]Yes or [2]No");
-                    return needsSupplies();
+                    return NeedsSupplies();
             }
 
         }
@@ -125,7 +126,7 @@ namespace LemonadeStand
         }
         private void DisplayDayResults() 
         {
-            Console.WriteLine($"At the end of the day, you now have {player.Inventory.AvailableMoney}.");
+            Console.WriteLine($"At the end of the day, you now have ${player.Inventory.AvailableMoney}.");
             Console.WriteLine($"You also have:\n{player.Inventory.Cup.Amount} {player.Inventory.Cup.Name}\n{player.Inventory.Lemon.Amount} {player.Inventory.Lemon.Name}\n{player.Inventory.Sugar.Amount} {player.Inventory.Sugar.Name}\n{player.Inventory.Ice.Amount} {player.Inventory.Ice.Name}");
 
         }
@@ -135,7 +136,11 @@ namespace LemonadeStand
             foreach(Customer customer in day.Customers)
             {
                 customer.BuyLemonade(random, day, player);
-                if(CheckForSellout(player.Inventory.Cup) || CheckForSellout(player.Inventory.Ice) || CheckForSellout(player.Inventory.Lemon) || CheckForSellout(player.Inventory.Sugar))
+                bool soldOutCups = CheckForSellout(player.Inventory.Cup);
+                bool soldOutLemons = CheckForSellout(player.Inventory.Lemon);
+                bool soldOutSugar = CheckForSellout(player.Inventory.Sugar);
+                bool soldOutIce = CheckForSellout(player.Inventory.Ice);
+                if(soldOutCups || soldOutLemons || soldOutSugar || soldOutIce )
                 {
                     break;
                 }

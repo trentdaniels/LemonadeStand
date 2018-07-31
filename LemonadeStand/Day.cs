@@ -40,7 +40,6 @@ namespace LemonadeStand
         public Day(Random random)
         {
             weather = new Weather(random);
-            dayNumber = 1;
 
         }
 

@@ -26,7 +26,7 @@ namespace LemonadeStand
         // Methods
         public void BuyLemonade(Random random, Day day, Player player) 
         {
-            if (WillBuy(random, day, player))
+            if (WillBuy(random, day, player) && player.Inventory.Cup.Amount > 0)
             {
                 player.Inventory.Cup.Amount--;
                 player.Inventory.Lemon.Amount -= player.Recipe.LemonsPerCup;
