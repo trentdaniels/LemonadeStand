@@ -47,6 +47,7 @@ namespace LemonadeStand
         }
 
 
+
         // Constructor
         public Player()
         {
@@ -68,7 +69,7 @@ namespace LemonadeStand
 
             if (playerName.Length < 1)
             {
-                Console.WriteLine("Invalid name. Please enter something next time!");
+                UserInterface.DisplayErrorMessage();
                 return GetName();
             }
             return playerName;
@@ -100,7 +101,7 @@ namespace LemonadeStand
                 case "2":
                     return false;
                 default:
-                    Console.WriteLine("Invalid input. Please choose [1]Yes or [2]No");
+                    UserInterface.DisplayErrorMessage();
                     return WantsToChangePrice();
             }
         }
@@ -118,11 +119,12 @@ namespace LemonadeStand
             }
             if (amountToBuy < 0)
             {
-                Console.WriteLine("Invalid input. Please choose a non-negative amount to buy");
+                UserInterface.DisplayErrorMessage();
                 return BuyFood(item);
             }
             item.Amount += amountToBuy;
             inventory.AvailableMoney -= amountToBuy * item.Price;
+            inventory.TotalLoss += amountToBuy * item.Price;
 
             Console.WriteLine($"You now have {item.Amount} {item.Name}!");
             return amountToBuy;

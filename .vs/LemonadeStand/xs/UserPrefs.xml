@@ -1,22 +1,22 @@
 ﻿<Properties StartupConfiguration="{84C3B2D4-2E62-4AD5-A6F3-1507770B7DAA}|Default">
   <MonoDevelop.Ide.ItemProperties.LemonadeStand PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LemonadeStand/Inventory.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="LemonadeStand/Cup.cs">
     <Files>
-      <File FileName="LemonadeStand/Program.cs" Line="7" Column="42" />
-      <File FileName="LemonadeStand/Game.cs" Line="38" Column="1" />
-      <File FileName="LemonadeStand/Player.cs" Line="83" Column="45" />
-      <File FileName="LemonadeStand/Inventory.cs" Line="79" Column="1" />
-      <File FileName="LemonadeStand/Day.cs" Line="35" Column="34" />
+      <File FileName="LemonadeStand/Program.cs" Line="13" Column="14" />
+      <File FileName="LemonadeStand/Game.cs" Line="35" Column="51" />
+      <File FileName="LemonadeStand/Player.cs" Line="127" Column="61" />
+      <File FileName="LemonadeStand/Inventory.cs" Line="110" Column="48" />
+      <File FileName="LemonadeStand/Day.cs" Line="39" Column="31" />
       <File FileName="LemonadeStand/Weather.cs" Line="40" Column="83" />
       <File FileName="LemonadeStand/Recipe.cs" Line="48" Column="24" />
-      <File FileName="LemonadeStand/Customer.cs" Line="35" Column="14" />
+      <File FileName="LemonadeStand/Customer.cs" Line="37" Column="70" />
+      <File FileName="LemonadeStand/UserInterface.cs" Line="20" Column="152" />
+      <File FileName="LemonadeStand/Cup.cs" Line="12" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/trent/Desktop/devCodeCamp/Projects/LemonadeStand/LemonadeStand/Game.cs" relfile="LemonadeStand/Game.cs" line="37" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />

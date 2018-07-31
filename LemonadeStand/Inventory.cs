@@ -9,7 +9,10 @@ namespace LemonadeStand
         private Sugar sugar;
         private Ice ice;
         private double availableMoney;
-        private int pitchers;
+        private double beginningMoney;
+        private double totalGain;
+        private double totalLoss;
+        private double beginningDayMoney;
 
         public Cup Cup
         {
@@ -51,15 +54,46 @@ namespace LemonadeStand
                 availableMoney = value;
             }
         }
-        public int Pitchers
+        public double BeginningMoney
         {
             get
             {
-                return pitchers;
+                return beginningMoney;
+            }
+
+        }
+        public double BeginningDayMoney
+        {
+            get
+            {
+                return beginningDayMoney;
             }
             set
             {
-                pitchers = value;
+                beginningDayMoney = value;
+            }
+        }
+
+        public double TotalGain
+        {
+            get
+            {
+                return totalGain;
+            }
+            set
+            {
+                totalGain = value;
+            }
+        }
+        public double TotalLoss
+        {
+            get
+            {
+                return totalLoss;
+            }
+            set
+            {
+                totalLoss = value;
             }
         }
 
@@ -71,8 +105,9 @@ namespace LemonadeStand
             lemon = new Lemon();
             sugar = new Sugar();
             cup = new Cup();
-            availableMoney = 20.00;
-            Console.WriteLine("Initialized Inventory");
+            beginningMoney = 20.00;
+            availableMoney = beginningMoney;
+            beginningDayMoney = availableMoney;
         }
 
         // Methods

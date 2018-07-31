@@ -13,57 +13,40 @@ namespace LemonadeStand
         public Game()
         {
             random = new Random();
-            SetUpGame();
-            RunGame();
+
 
         }
 
         // Methods
-        private void SetUpGame() 
+        public void SetUpGame()
         {
             player = new Player();
-            DisplayWelcomeMessage();
+            UserInterface.DisplayWelcomeMessage(player);
             daysOfGameplay = GetDaysToPlay();
 
         }
 
-        private void RunGame()
+        public void RunGame()
         {
             for (int i = 1; i <= daysOfGameplay; i++)
             {
                 day = new Day(random);
                 day.DayNumber = i;
-                DisplayWeather(day);
-                DisplayInventory(player.Inventory);
+                UserInterface.DisplayWeather(day);
+                day.CreateCustomers(random);
+                UserInterface.DisplayInventory(player.Inventory);
                 RunStore();
                 RunRecipe();
                 RunDay();
-                DisplayDayResults();
-                IncrementDay();
+                UserInterface.DisplayDayResults(player, day);
+                player.Inventory.BeginningDayMoney = player.Inventory.AvailableMoney;
             }
 
 
         }
-        private void DisplayWelcomeMessage()
-        {
-            Console.WriteLine($"Welcome to Lemonade Stand {player.Name}!");
-        }
-
-        private void DisplayInventory(Inventory inventory)
-        {
-            Console.WriteLine($"You have {inventory.Cup.Amount} {inventory.Cup.Name}, {inventory.Lemon.Amount} {inventory.Lemon.Name}, {inventory.Sugar.Amount} {inventory.Sugar.Name}, and {inventory.Ice.Amount} {inventory.Ice.Name}.");
-        }
 
 
-
-        private void DisplayWeather(Day today)
-        {
-            int temperature = today.Weather.Temperature;
-            string forecast = today.Weather.Forecast;
-            Console.WriteLine($"Day {today.DayNumber}'s weather is {temperature} degrees and {forecast}.");
-            today.CreateCustomers(random);
-        }
-        private int GetDaysToPlay ()
+        private int GetDaysToPlay()
         {
             string daysOptions;
             int gameplayDays;
@@ -82,23 +65,19 @@ namespace LemonadeStand
                     gameplayDays = 30;
                     return gameplayDays;
                 default:
-                    Console.Write("Invalid option. Please try again.");
+                    UserInterface.DisplayErrorMessage();
                     return GetDaysToPlay();
             }
 
         }
-        private void IncrementDay () 
+        private void RunStore()
         {
-            day.DayNumber++;
-        }
-        private void RunStore() 
-        {
-            if(NeedsSupplies())
+            if (NeedsSupplies())
             {
                 int updatedCups = player.BuyFood(player.Inventory.Cup);
                 int updatedLemons = player.BuyFood(player.Inventory.Lemon);
                 int updatedSugar = player.BuyFood(player.Inventory.Sugar);
-                int updatedIce = player.BuyFood(player.Inventory.Ice); 
+                int updatedIce = player.BuyFood(player.Inventory.Ice);
             }
             Console.WriteLine($"You now have:\n{player.Inventory.Cup.Amount} {player.Inventory.Cup.Name}\n{player.Inventory.Lemon.Amount} {player.Inventory.Lemon.Name}\n{player.Inventory.Sugar.Amount} {player.Inventory.Sugar.Name}\n{player.Inventory.Ice.Amount} {player.Inventory.Ice.Name}\n");
         }
@@ -107,14 +86,14 @@ namespace LemonadeStand
             string needsSuppliesInput;
             Console.WriteLine("Do you want to go to the store? [1]Yes or [2]No");
             needsSuppliesInput = Console.ReadLine();
-            switch(needsSuppliesInput)
+            switch (needsSuppliesInput)
             {
                 case "1":
                     return true;
                 case "2":
                     return false;
                 default:
-                    Console.WriteLine("Invalid input. Please choose [1]Yes or [2]No");
+                    UserInterface.DisplayErrorMessage();
                     return NeedsSupplies();
             }
 
@@ -124,23 +103,18 @@ namespace LemonadeStand
             player.Recipe.HandleRecipeChange();
             player.SetPriceOfLemonade();
         }
-        private void DisplayDayResults() 
-        {
-            Console.WriteLine($"At the end of {day.DayNumber}, you now have ${player.Inventory.AvailableMoney}.");
-            Console.WriteLine($"You also have:\n{player.Inventory.Cup.Amount} {player.Inventory.Cup.Name}\n{player.Inventory.Lemon.Amount} {player.Inventory.Lemon.Name}\n{player.Inventory.Sugar.Amount} {player.Inventory.Sugar.Name}\n{player.Inventory.Ice.Amount} {player.Inventory.Ice.Name}");
-            Console.WriteLine($"{day.BuyingCustomers} out of {day.Customers.Count} bought your lemonade.");
-        }
+
         private void RunDay()
         {
             Console.WriteLine("Let the day begin!");
-            foreach(Customer customer in day.Customers)
+            foreach (Customer customer in day.Customers)
             {
                 customer.BuyLemonade(random, day, player);
                 bool soldOutCups = CheckForSellout(player.Inventory.Cup);
                 bool soldOutLemons = CheckForSellout(player.Inventory.Lemon);
                 bool soldOutSugar = CheckForSellout(player.Inventory.Sugar);
                 bool soldOutIce = CheckForSellout(player.Inventory.Ice);
-                if(soldOutCups || soldOutLemons || soldOutSugar || soldOutIce )
+                if (soldOutCups || soldOutLemons || soldOutSugar || soldOutIce)
                 {
                     break;
                 }
@@ -159,6 +133,30 @@ namespace LemonadeStand
             }
 
             return false;
+        }
+
+        public void RunEndGame()
+        {
+            UserInterface.DisplayFinalResults(player);
+
+        }
+        public bool PlayAgain()
+        {
+            string playAgain;
+            Console.WriteLine("Would you like to play again? [1]Yes or [2]No");
+            playAgain = Console.ReadLine();
+            switch (playAgain)
+            {
+                case "1":
+                    Console.WriteLine("Let's start a new game.");
+                    return true;
+                case "2":
+                    Console.WriteLine("Thanks for playing!");
+                    return false;
+                default:
+                    UserInterface.DisplayErrorMessage();
+                    return PlayAgain();
+            }
         }
     }
 }
