@@ -60,9 +60,6 @@ namespace LemonadeStand
             }
             return true;
 
-
-
-        //    // temperature, recipes, and forecast point total are each a MAX 30 POINTS!!!
         }
         private int DetermineTemperatureDeductible(Random random, Day day)
         {

@@ -1,49 +1,61 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace LemonadeStand
 {
     public class Game
     {
         // Members
-        private Player player;
         private Day day;
         public Random random;
         private int daysOfGameplay;
+        public List<Player> players;
 
         // Costructor
         public Game()
         {
             random = new Random();
-
+            players = UserInterface.CreatePlayers();
 
         }
 
         // Methods
         public void SetUpGame()
         {
-            player = new Player();
-            UserInterface.DisplayWelcomeMessage(player);
+            foreach(Player player in players)
+            {
+                player.Name = player.GetName(players, player);
+            }
+            UserInterface.DisplayWelcomeMessage(players);
             daysOfGameplay = GetDaysToPlay();
+            UserInterface.DisplayTotalGameDays(daysOfGameplay);
 
         }
 
         public void RunGame()
         {
+            
             for (int i = 1; i <= daysOfGameplay; i++)
             {
                 day = new Day(random);
                 day.DayNumber = i;
                 UserInterface.DisplayWeather(day);
                 day.CreateCustomers(random);
-                UserInterface.DisplayInventory(player.Inventory);
-                RunStore();
-                RunRecipe();
-                RunDay();
-                UserInterface.DisplayDayResults(player, day);
-                player.Inventory.BeginningDayMoney = player.Inventory.AvailableMoney;
+                foreach (Player player in players)
+                {
+                    UserInterface.DisplayInventory(player);
+                    RunStore();
+                    RunRecipe();
+                    RunDay();
+                    UserInterface.DisplayDayResults(player, day);
+                    player.Inventory.BeginningDayMoney = player.Inventory.AvailableMoney;
+                }
             }
 
 
+
         }
+
 
 
         private int GetDaysToPlay()
@@ -72,19 +84,23 @@ namespace LemonadeStand
         }
         private void RunStore()
         {
-            if (NeedsSupplies())
+            foreach(Player player in players)
             {
-                int updatedCups = player.BuyFood(player.Inventory.Cup);
-                int updatedLemons = player.BuyFood(player.Inventory.Lemon);
-                int updatedSugar = player.BuyFood(player.Inventory.Sugar);
-                int updatedIce = player.BuyFood(player.Inventory.Ice);
+                if (NeedsSupplies(player))
+                {
+                    int updatedCups = player.BuyFood(player.Inventory.Cup);
+                    int updatedLemons = player.BuyFood(player.Inventory.Lemon);
+                    int updatedSugar = player.BuyFood(player.Inventory.Sugar);
+                    int updatedIce = player.BuyFood(player.Inventory.Ice);
+                }
+                UserInterface.DisplayNewInventory(player);
             }
-            Console.WriteLine($"You now have:\n{player.Inventory.Cup.Amount} {player.Inventory.Cup.Name}\n{player.Inventory.Lemon.Amount} {player.Inventory.Lemon.Name}\n{player.Inventory.Sugar.Amount} {player.Inventory.Sugar.Name}\n{player.Inventory.Ice.Amount} {player.Inventory.Ice.Name}\n");
+
         }
-        private bool NeedsSupplies()
+        private bool NeedsSupplies(Player player)
         {
             string needsSuppliesInput;
-            Console.WriteLine("Do you want to go to the store? [1]Yes or [2]No");
+            Console.WriteLine($"Do you want to go to the store {player.Name}? [1]Yes or [2]No");
             needsSuppliesInput = Console.ReadLine();
             switch (needsSuppliesInput)
             {
@@ -94,33 +110,39 @@ namespace LemonadeStand
                     return false;
                 default:
                     UserInterface.DisplayErrorMessage();
-                    return NeedsSupplies();
+                    return NeedsSupplies(player);
             }
 
         }
         private void RunRecipe()
         {
-            player.Recipe.HandleRecipeChange();
-            player.SetPriceOfLemonade();
+            foreach(Player player in players)
+            {
+                player.Recipe.HandleRecipeChange(player);
+                player.SetPriceOfLemonade();
+            }
+
         }
 
         private void RunDay()
         {
-            Console.WriteLine("Let the day begin!");
-            foreach (Customer customer in day.Customers)
+            foreach (Player player in players)
             {
-                customer.BuyLemonade(random, day, player);
-                bool soldOutCups = CheckForSellout(player.Inventory.Cup);
-                bool soldOutLemons = CheckForSellout(player.Inventory.Lemon);
-                bool soldOutSugar = CheckForSellout(player.Inventory.Sugar);
-                bool soldOutIce = CheckForSellout(player.Inventory.Ice);
-                if (soldOutCups || soldOutLemons || soldOutSugar || soldOutIce)
+                Console.WriteLine("Let the day begin!");
+                foreach (Customer customer in day.Customers)
                 {
-                    break;
+                    customer.BuyLemonade(random, day, player);
+                    bool soldOutCups = CheckForSellout(player.Inventory.Cup);
+                    bool soldOutLemons = CheckForSellout(player.Inventory.Lemon);
+                    bool soldOutSugar = CheckForSellout(player.Inventory.Sugar);
+                    bool soldOutIce = CheckForSellout(player.Inventory.Ice);
+                    if (soldOutCups || soldOutLemons || soldOutSugar || soldOutIce)
+                    {
+                        break;
+                    }
                 }
-
-
             }
+
 
         }
         private bool CheckForSellout(Item item)
@@ -137,7 +159,12 @@ namespace LemonadeStand
 
         public void RunEndGame()
         {
-            UserInterface.DisplayFinalResults(player);
+            foreach(Player player in players)
+            {
+                UserInterface.DisplayFinalResults(player);
+
+            }
+            UserInterface.DetermineWinner(players);
 
         }
         public bool PlayAgain()
@@ -158,5 +185,6 @@ namespace LemonadeStand
                     return PlayAgain();
             }
         }
+
     }
 }

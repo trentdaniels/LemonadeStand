@@ -11,9 +11,11 @@ namespace LemonadeStand
             bool playAgain;
             do
             {
+                
                 game.SetUpGame();
                 game.RunGame();
                 game.RunEndGame();
+
                 playAgain = game.PlayAgain();
             }
             while (playAgain);

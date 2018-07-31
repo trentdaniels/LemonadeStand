@@ -29,6 +29,10 @@ namespace LemonadeStand
             {
                 return name;
             }
+            set
+            {
+                name = value;
+            }
         }
         public Inventory Inventory
         {
@@ -51,7 +55,7 @@ namespace LemonadeStand
         // Constructor
         public Player()
         {
-            name = GetName();
+            
             inventory = new Inventory();
             priceOfLemonade = .25;
             recipe = new Recipe();
@@ -60,20 +64,20 @@ namespace LemonadeStand
         // Methods
 
 
-        public string GetName()
+        public string GetName(List<Player> players, Player player)
         {
             string playerName;
 
-            Console.WriteLine("What is your name?");
+            Console.WriteLine($"What is your name Player {players.IndexOf(player) + 1}?");
             playerName = Console.ReadLine();
 
             if (playerName.Length < 1)
             {
                 UserInterface.DisplayErrorMessage();
-                return GetName();
+                return GetName(players, player);
             }
             return playerName;
-
+        
         }
 
         public void SetPriceOfLemonade()
@@ -128,7 +132,8 @@ namespace LemonadeStand
 
             Console.WriteLine($"You now have {item.Amount} {item.Name}!");
             return amountToBuy;
-
+            // Used item as a parameter with the expectation of passing in a more specific child class as the argument. 
+            // This illustrates the liskov substitution principle that a child class should be used the same as the parent
 
         }
 
@@ -140,6 +145,7 @@ namespace LemonadeStand
                 return false;
             }
             return true;
+            // Single responsibility in this function. It simply tells the user whether or not they can buy a certain amount of an item
         }
 
     }
