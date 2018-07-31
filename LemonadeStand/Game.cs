@@ -126,9 +126,9 @@ namespace LemonadeStand
         }
         private void DisplayDayResults() 
         {
-            Console.WriteLine($"At the end of the day, you now have ${player.Inventory.AvailableMoney}.");
+            Console.WriteLine($"At the end of {day.DayNumber}, you now have ${player.Inventory.AvailableMoney}.");
             Console.WriteLine($"You also have:\n{player.Inventory.Cup.Amount} {player.Inventory.Cup.Name}\n{player.Inventory.Lemon.Amount} {player.Inventory.Lemon.Name}\n{player.Inventory.Sugar.Amount} {player.Inventory.Sugar.Name}\n{player.Inventory.Ice.Amount} {player.Inventory.Ice.Name}");
-
+            Console.WriteLine($"{day.BuyingCustomers} out of {day.Customers.Count} bought your lemonade.");
         }
         private void RunDay()
         {

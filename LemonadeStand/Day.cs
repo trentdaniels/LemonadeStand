@@ -9,6 +9,7 @@ namespace LemonadeStand
         private Weather weather;
         private int dayNumber;
         private List<Customer> customers;
+        private int buyingCustomers;
 
         public int DayNumber
         {
@@ -35,11 +36,23 @@ namespace LemonadeStand
                 return customers;
             }
         }
+        public int BuyingCustomers
+        {
+            get
+            {
+                return buyingCustomers;
+            }
+            set
+            {
+                buyingCustomers = value;
+            }
+        }
 
         // Constructor
         public Day(Random random)
         {
             weather = new Weather(random);
+            buyingCustomers = 0;
 
         }
 
