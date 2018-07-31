@@ -31,20 +31,23 @@ namespace LemonadeStand
             player.Inventory.Ice.Amount -= player.Recipe.IcePerCup;
             player.Inventory.Sugar.Amount -= player.Recipe.SugarPerCup;
         }
-        //public bool WillBuy (Random random, Day day) 
-        //{
-        //    int temperaturePoints;
-        //    int bonusPoints;
-        //    int totalPoints;
-        //    int forecastPoints;
-        //    int recipePoints;
+        public bool WillBuy (Random random, Day day, Player player) 
+        {
+            int temperatureDeductible;
+            int bonusDeductible;
+            int totalPoints;
+            int forecastDeductible;
+            int recipeDeductible;
+            int priceDeductible;
 
-        //    totalPoints = 100;
-        //    bonusPoints = random.Next(0, 6);
-        //    temperaturePoints = DetermineTemperatureDeductible(day, random);
+            totalPoints = 100;
+            bonusDeductible = random.Next(0, 6);
+            temperatureDeductible = DetermineTemperatureDeductible(random, day);
+            forecastDeductible = DetermineForecastDeductible(random, day);
+            recipeDeductible = DetermineRecipeDeductible(random, day, player);
         //    // temperature, recipes, and forecast point total are each a MAX 30 POINTS!!!
-        //}
-        private int DetermineTemperatureDeductible(Day day, Random random)
+        }
+        private int DetermineTemperatureDeductible(Random random, Day day)
         {
             int temperatureDeductible;
 
@@ -62,7 +65,7 @@ namespace LemonadeStand
             return temperatureDeductible;
         }
 
-        private int DetermineForecastDeductible (Day day, Random random)
+        private int DetermineForecastDeductible (Random random, Day day)
         {
             int forecastDeductible;
 
@@ -77,12 +80,61 @@ namespace LemonadeStand
                 case "cloudy":
                     forecastDeductible = random.Next(15, 23);
                     return forecastDeductible;
-                case "rainy":
+                default:
                     forecastDeductible = random.Next(20, 30);
                     return forecastDeductible;
+                
             }
 
         }
+        private int DetermineRecipeDeductible (Random random, Day day, Player player)
+        {
+            int recipeDeductible;
 
+            if (day.Weather.Forecast == "sunny" && player.Recipe.IcePerCup > player.Recipe.LemonsPerCup && player.Recipe.SugarPerCup < player.Recipe.IcePerCup)
+            {
+                recipeDeductible = random.Next(0, 10);
+            }
+            else if (day.Weather.Forecast == "clear" && player.Recipe.IcePerCup == player.Recipe.LemonsPerCup && player.Recipe.IcePerCup == player.Recipe.SugarPerCup)
+            {
+                recipeDeductible = random.Next(0, 10);
+            }
+            else if (day.Weather.Forecast == "cloudy" && player.Recipe.LemonsPerCup > player.Recipe.IcePerCup && player.Recipe.LemonsPerCup > player.Recipe.SugarPerCup)
+            {
+                recipeDeductible = random.Next(0, 10);
+            }
+            else if (day.Weather.Forecast == "rainy" && player.Recipe.SugarPerCup > player.Recipe.IcePerCup && player.Recipe.SugarPerCup > player.Recipe.LemonsPerCup)
+            {
+                recipeDeductible = random.Next(0, 10);
+            }
+            else
+            {
+                recipeDeductible = random.Next(10, 25);
+            }
+            return recipeDeductible;
+        }
+
+        private int DeterminePriceDeductible(Random random, Day day, Player player)
+        {
+            int priceDeductible;
+
+            if (day.Weather.Temperature > 85 && player.PriceOfLemonade > .28)
+            {
+                priceDeductible = random.Next(0, 6);
+            }
+            else if (day.Weather.Temperature > 65 && player.PriceOfLemonade > .23 && player.PriceOfLemonade <= .27)
+            {
+                priceDeductible = random.Next(0, 6);
+            }
+            else if (day.Weather.Temperature > 50 && player.PriceOfLemonade > .20 && player.PriceOfLemonade <= .24)
+            {
+                priceDeductible = random.Next(0, 6);
+            }
+            else 
+            {
+                priceDeductible = random.Next(5, 12);
+            }
+            return priceDeductible;
+        }
     }
 }

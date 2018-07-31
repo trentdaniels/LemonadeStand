@@ -80,6 +80,7 @@ namespace LemonadeStand
             Console.WriteLine($"How much would you like your lemonade to cost? It currently costs ${PriceOfLemonade}");
             PriceOfLemonade = double.Parse(Console.ReadLine());
             Console.WriteLine($"Lemonade is now ${PriceOfLemonade}.");
+            // Add validation to this method
 
         }
         public int BuyFood(Item item)

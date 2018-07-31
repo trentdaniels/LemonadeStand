@@ -7,7 +7,7 @@ namespace LemonadeStand
         public Sugar()
         {
             price = .07;
-            name = "cups of sugar";
+            name = "tablespoons of sugar";
             amount = 0;
 
 

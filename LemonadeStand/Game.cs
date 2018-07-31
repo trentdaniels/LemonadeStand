@@ -47,6 +47,7 @@ namespace LemonadeStand
         private void DisplayInventory(Inventory inventory)
         {
             Console.WriteLine($"You have {inventory.Cup.Amount} {inventory.Cup.Name}, {inventory.Lemon.Amount} {inventory.Lemon.Name}, {inventory.Sugar.Amount} {inventory.Sugar.Name}, and {inventory.Ice.Amount} {inventory.Ice.Name}.");
+            // Change Sugar Units to Tablespoons
         }
 
 
