@@ -118,22 +118,27 @@ namespace LemonadeStand
 
             Console.WriteLine($"You have {item.Amount} {item.Name} and ${inventory.AvailableMoney} available.");
             Console.WriteLine($"How many {item.Name} would you like to buy (${item.Price} each)?");
-            amountToBuy = int.Parse(Console.ReadLine());
-            if (!AbleToBuy(amountToBuy, item.Price))
+            if(int.TryParse(Console.ReadLine(), out amountToBuy))
             {
-                return BuyFood(item);
-            }
-            if (amountToBuy < 0)
-            {
-                UserInterface.DisplayErrorMessage();
-                return BuyFood(item);
-            }
-            item.Amount += amountToBuy;
-            inventory.AvailableMoney -= amountToBuy * item.Price;
-            inventory.TotalLoss += amountToBuy * item.Price;
+                if (!AbleToBuy(amountToBuy, item.Price))
+                {
+                    return BuyFood(item);
+                }
+                if (amountToBuy < 0)
+                {
+                    UserInterface.DisplayErrorMessage();
+                    return BuyFood(item);
+                }
+                item.Amount += amountToBuy;
+                inventory.AvailableMoney -= amountToBuy * item.Price;
+                inventory.TotalLoss += amountToBuy * item.Price;
 
-            Console.WriteLine($"You now have {item.Amount} {item.Name}!");
-            return amountToBuy;
+                Console.WriteLine($"You now have {item.Amount} {item.Name}!");
+                return amountToBuy;
+            }
+            UserInterface.DisplayErrorMessage();
+            return BuyFood(item);
+
             // Used item as a parameter with the expectation of passing in a more specific child class as the argument. 
             // This illustrates the liskov substitution principle that a child class should be used the same as the parent
 

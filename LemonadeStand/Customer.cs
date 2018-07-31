@@ -32,9 +32,9 @@ namespace LemonadeStand
                 player.Inventory.Lemon.Amount -= player.Recipe.LemonsPerCup;
                 player.Inventory.Ice.Amount -= player.Recipe.IcePerCup;
                 player.Inventory.Sugar.Amount -= player.Recipe.SugarPerCup;
-                player.Inventory.AvailableMoney += player.PriceOfLemonade;
+                player.Inventory.AvailableMoney += Math.Round(player.PriceOfLemonade,2);
                 day.BuyingCustomers++;
-                player.Inventory.TotalGain += player.PriceOfLemonade;
+                player.Inventory.TotalGain += Math.Round(player.PriceOfLemonade,2);
             }
 
         }

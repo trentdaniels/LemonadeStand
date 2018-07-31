@@ -60,7 +60,7 @@ namespace LemonadeStand
         public void CreateCustomers(Random random)
         {
             customers = new List<Customer>() { };
-            for (int i = 0; i < Weather.Temperature + random.Next(0,15); i++)
+            for (int i = 0; i < Weather.Temperature + random.Next(0,20); i++)
             {
                 customers.Add(new Customer());
 
