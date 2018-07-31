@@ -130,8 +130,8 @@ namespace LemonadeStand
                     return BuyFood(item);
                 }
                 item.Amount += amountToBuy;
-                inventory.AvailableMoney -= amountToBuy * item.Price;
-                inventory.TotalLoss += amountToBuy * item.Price;
+                inventory.AvailableMoney -= Math.Round(amountToBuy * item.Price,2);
+                inventory.TotalLoss += Math.Round(amountToBuy * item.Price, 2);
 
                 Console.WriteLine($"You now have {item.Amount} {item.Name}!");
                 return amountToBuy;

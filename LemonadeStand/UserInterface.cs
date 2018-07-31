@@ -48,8 +48,8 @@ namespace LemonadeStand
         public static void DisplayWeather(Day day)
         {
             int temperature = day.Weather.Temperature;
-            string forecast = day.Weather.Forecast;
-            Console.WriteLine($"Day {day.DayNumber}'s actual weather is {temperature} degrees and {forecast}.");
+            string weatherType = day.Weather.WeatherType;
+            Console.WriteLine($"Day {day.DayNumber}'s actual weather is {temperature} degrees and {weatherType}.");
         }
 
         public static List<Player> CreatePlayers()
@@ -100,7 +100,7 @@ namespace LemonadeStand
         }
         public static void DisplayForecast(Day day)
         {
-            Console.WriteLine($"Day {day.DayNumber}'s forecast is a high of {day.Weather.ForecastedHigh} degrees and low of {day.Weather.ForecastedLow} degrees.");
+            Console.WriteLine($"Day {day.DayNumber}'s forecast is a high of {day.Weather.ForecastedHigh} degrees and low of {day.Weather.ForecastedLow} degrees. It looks {day.Weather.ForecastedWeatherType}.");
         }
     }
 }

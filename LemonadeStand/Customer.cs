@@ -83,7 +83,7 @@ namespace LemonadeStand
         {
             int forecastDeductible;
 
-            switch(day.Weather.Forecast)
+            switch(day.Weather.WeatherType)
             {
                 case "sunny":
                     forecastDeductible = random.Next(0, 8);
@@ -105,19 +105,19 @@ namespace LemonadeStand
         {
             int recipeDeductible;
 
-            if (day.Weather.Forecast == "sunny" && player.Recipe.IcePerCup > player.Recipe.LemonsPerCup && player.Recipe.SugarPerCup < player.Recipe.IcePerCup)
+            if (day.Weather.WeatherType == "sunny" && player.Recipe.IcePerCup > player.Recipe.LemonsPerCup && player.Recipe.SugarPerCup < player.Recipe.IcePerCup)
             {
                 recipeDeductible = random.Next(0, 10);
             }
-            else if (day.Weather.Forecast == "clear" && player.Recipe.IcePerCup == player.Recipe.LemonsPerCup && player.Recipe.IcePerCup == player.Recipe.SugarPerCup)
+            else if (day.Weather.WeatherType == "clear" && player.Recipe.IcePerCup == player.Recipe.LemonsPerCup && player.Recipe.IcePerCup == player.Recipe.SugarPerCup)
             {
                 recipeDeductible = random.Next(0, 10);
             }
-            else if (day.Weather.Forecast == "cloudy" && player.Recipe.LemonsPerCup > player.Recipe.IcePerCup && player.Recipe.LemonsPerCup > player.Recipe.SugarPerCup)
+            else if (day.Weather.WeatherType == "cloudy" && player.Recipe.LemonsPerCup > player.Recipe.IcePerCup && player.Recipe.LemonsPerCup > player.Recipe.SugarPerCup)
             {
                 recipeDeductible = random.Next(0, 10);
             }
-            else if (day.Weather.Forecast == "rainy" && player.Recipe.SugarPerCup > player.Recipe.IcePerCup && player.Recipe.SugarPerCup > player.Recipe.LemonsPerCup)
+            else if (day.Weather.WeatherType == "rainy" && player.Recipe.SugarPerCup > player.Recipe.IcePerCup && player.Recipe.SugarPerCup > player.Recipe.LemonsPerCup)
             {
                 recipeDeductible = random.Next(0, 10);
             }

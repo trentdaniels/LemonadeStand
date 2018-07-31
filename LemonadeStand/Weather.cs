@@ -8,16 +8,15 @@ namespace LemonadeStand
         // Members
         private int temperature;
         private List<string> possibleForecasts;
-        private string forecast;
+        private string weatherType;
         private int forecastedLow;
         private int forecastedHigh;
+        private string forecastedWeatherType;
 
-        public string Forecast
+        public string WeatherType
         {
-            get
-            {
-                return forecast;
-            }
+            get => weatherType;
+            set => weatherType = value;
         }
 
         public int Temperature
@@ -34,7 +33,7 @@ namespace LemonadeStand
                 return possibleForecasts;
             }
         }
-        public int ForecastedLow 
+        public int ForecastedLow
         {
             get => forecastedLow;
         }
@@ -42,18 +41,52 @@ namespace LemonadeStand
         {
             get => forecastedHigh;
         }
+        public string ForecastedWeatherType
+        {
+            get => forecastedWeatherType;
+        }
 
         // Constructors
         public Weather(Random random)
         {
             possibleForecasts = new List<string>() { "sunny", "rainy", "cloudy", "clear" };
-            forecast = possibleForecasts[random.Next(0, possibleForecasts.Count)];
+            forecastedWeatherType = possibleForecasts[random.Next(0, possibleForecasts.Count)];
             forecastedLow = random.Next(50, 75);
             forecastedHigh = random.Next(75, 100);
             temperature = random.Next(forecastedLow, forecastedHigh);
+            HandleWeather(random);
 
         }
 
         // Methods
+        public bool WillWeatherComeTrue (Random random)
+        {
+            int chanceOfCorrectWeather;
+
+            chanceOfCorrectWeather = random.Next(0, 2);
+            switch (chanceOfCorrectWeather)
+            {
+                case 0:
+                    return true;
+                case 1:
+                    return false;
+                default:
+                    return false;
+            }
+        }
+        public void HandleWeather(Random random)
+        {
+            if(!WillWeatherComeTrue(random))
+            {
+                if (forecastedWeatherType == "sunny")
+                {
+                    WeatherType = "clear";
+                    return;
+                }
+                WeatherType = possibleForecasts[possibleForecasts.IndexOf(forecastedWeatherType) - 1];
+                return;
+            }
+            WeatherType = forecastedWeatherType;
+        }
     }
 }

@@ -38,8 +38,9 @@ namespace LemonadeStand
             for (int i = 1; i <= daysOfGameplay; i++)
             {
                 day = new Day(random);
-                UserInterface.DisplayForecast(day);
                 day.DayNumber = i;
+                UserInterface.DisplayForecast(day);
+
 
                 day.CreateCustomers(random);
                 foreach (Player player in players)
@@ -177,6 +178,7 @@ namespace LemonadeStand
             switch (playAgain)
             {
                 case "1":
+                    Console.Clear();
                     Console.WriteLine("Let's start a new game.");
                     return true;
                 case "2":
