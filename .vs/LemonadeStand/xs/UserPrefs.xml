@@ -1,21 +1,22 @@
 ﻿<Properties StartupConfiguration="{84C3B2D4-2E62-4AD5-A6F3-1507770B7DAA}|Default">
   <MonoDevelop.Ide.ItemProperties.LemonadeStand PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LemonadeStand/Sugar.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="LemonadeStand/Inventory.cs">
     <Files>
       <File FileName="LemonadeStand/Program.cs" Line="7" Column="42" />
-      <File FileName="LemonadeStand/Game.cs" Line="50" Column="49" />
+      <File FileName="LemonadeStand/Game.cs" Line="38" Column="1" />
       <File FileName="LemonadeStand/Player.cs" Line="83" Column="45" />
       <File FileName="LemonadeStand/Inventory.cs" Line="79" Column="1" />
-      <File FileName="LemonadeStand/Day.cs" Line="37" Column="1" />
+      <File FileName="LemonadeStand/Day.cs" Line="35" Column="34" />
       <File FileName="LemonadeStand/Weather.cs" Line="40" Column="83" />
-      <File FileName="LemonadeStand/Recipe.cs" Line="86" Column="1" />
-      <File FileName="LemonadeStand/Customer.cs" Line="48" Column="1" />
-      <File FileName="LemonadeStand/Sugar.cs" Line="10" Column="32" />
+      <File FileName="LemonadeStand/Recipe.cs" Line="48" Column="24" />
+      <File FileName="LemonadeStand/Customer.cs" Line="35" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/trent/Desktop/devCodeCamp/Projects/LemonadeStand/LemonadeStand/Game.cs" relfile="LemonadeStand/Game.cs" line="37" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />

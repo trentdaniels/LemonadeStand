@@ -47,9 +47,9 @@ namespace LemonadeStand
         // Constructors
         public Recipe()
         {
-            lemonsPerCup = 4;
-            sugarPerCup = 4;
-            icePerCup = 4;
+            lemonsPerCup = 2;
+            sugarPerCup = 2;
+            icePerCup = 2;
             
         }
 

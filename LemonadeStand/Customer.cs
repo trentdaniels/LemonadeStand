@@ -24,27 +24,41 @@ namespace LemonadeStand
         }
 
         // Methods
-        public void BuyLemonade(Player player, Random random, Day day) 
+        public void BuyLemonade(Random random, Day day, Player player) 
         {
-            player.Inventory.Cup.Amount--;
-            player.Inventory.Lemon.Amount -= player.Recipe.LemonsPerCup;
-            player.Inventory.Ice.Amount -= player.Recipe.IcePerCup;
-            player.Inventory.Sugar.Amount -= player.Recipe.SugarPerCup;
+            if (WillBuy(random, day, player))
+            {
+                player.Inventory.Cup.Amount--;
+                player.Inventory.Lemon.Amount -= player.Recipe.LemonsPerCup;
+                player.Inventory.Ice.Amount -= player.Recipe.IcePerCup;
+                player.Inventory.Sugar.Amount -= player.Recipe.SugarPerCup;
+            }
+
         }
         public bool WillBuy (Random random, Day day, Player player) 
         {
             int temperatureDeductible;
             int bonusDeductible;
-            int totalPoints;
             int forecastDeductible;
             int recipeDeductible;
             int priceDeductible;
 
-            totalPoints = 100;
+            ChanceToBuy = 100;
             bonusDeductible = random.Next(0, 6);
             temperatureDeductible = DetermineTemperatureDeductible(random, day);
             forecastDeductible = DetermineForecastDeductible(random, day);
             recipeDeductible = DetermineRecipeDeductible(random, day, player);
+            priceDeductible = DeterminePriceDeductible(random, day, player);
+
+            ChanceToBuy -= temperatureDeductible + forecastDeductible + recipeDeductible + priceDeductible + bonusDeductible;
+            if (ChanceToBuy < 55)
+            {
+                return false;
+            }
+            return true;
+
+
+
         //    // temperature, recipes, and forecast point total are each a MAX 30 POINTS!!!
         }
         private int DetermineTemperatureDeductible(Random random, Day day)
@@ -57,10 +71,10 @@ namespace LemonadeStand
             }
             else if (day.Weather.Temperature > 65)
             {
-                temperatureDeductible = random.Next(10, 22);
+                temperatureDeductible = random.Next(10, 18);
             }
             else {
-                temperatureDeductible = random.Next(20, 30);
+                temperatureDeductible = random.Next(18, 22);
             }
             return temperatureDeductible;
         }
@@ -81,7 +95,7 @@ namespace LemonadeStand
                     forecastDeductible = random.Next(15, 23);
                     return forecastDeductible;
                 default:
-                    forecastDeductible = random.Next(20, 30);
+                    forecastDeductible = random.Next(20, 26);
                     return forecastDeductible;
                 
             }
@@ -109,7 +123,7 @@ namespace LemonadeStand
             }
             else
             {
-                recipeDeductible = random.Next(10, 25);
+                recipeDeductible = random.Next(10, 21);
             }
             return recipeDeductible;
         }
@@ -130,6 +144,11 @@ namespace LemonadeStand
             {
                 priceDeductible = random.Next(0, 6);
             }
+            else if (player.PriceOfLemonade > .35)
+            {
+                priceDeductible = random.Next(15, 26);
+            }
+                
             else 
             {
                 priceDeductible = random.Next(5, 12);

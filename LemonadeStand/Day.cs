@@ -28,6 +28,13 @@ namespace LemonadeStand
                 return weather;
             }
         }
+        public List<Customer> Customers
+        {
+            get
+            {
+                return customers;
+            }
+        }
 
         // Constructor
         public Day(Random random)
@@ -38,14 +45,6 @@ namespace LemonadeStand
         }
 
         // Methods
-        public int GetTemperature() 
-        {
-            return weather.Temperature;
-        }
-        public string GetWeatherForecast(List<string> forecasts, Random randomIndex)
-        {
-            return forecasts[randomIndex.Next(0, forecasts.Count)];
-        }
 
         public void CreateCustomers(Random random)
         {
@@ -57,5 +56,6 @@ namespace LemonadeStand
             }
             Console.WriteLine($"There are a possible {customers.Count} customers coming today!");
         }
+         
     }
 }

@@ -34,9 +34,9 @@ namespace LemonadeStand
             DisplayInventory(player.Inventory);
             RunStore();
             RunRecipe();
-
-            //DisplayDayResults();
-            //IncrementDay();
+            RunDay();
+            DisplayDayResults();
+            IncrementDay();
 
         }
         private void DisplayWelcomeMessage()
@@ -47,7 +47,6 @@ namespace LemonadeStand
         private void DisplayInventory(Inventory inventory)
         {
             Console.WriteLine($"You have {inventory.Cup.Amount} {inventory.Cup.Name}, {inventory.Lemon.Amount} {inventory.Lemon.Name}, {inventory.Sugar.Amount} {inventory.Sugar.Name}, and {inventory.Ice.Amount} {inventory.Ice.Name}.");
-            // Change Sugar Units to Tablespoons
         }
 
 
@@ -105,6 +104,49 @@ namespace LemonadeStand
             Console.WriteLine($"At the end of the day, you now have {player.Inventory.AvailableMoney}.");
             Console.WriteLine($"You also have:\n{player.Inventory.Cup.Amount} {player.Inventory.Cup.Name}\n{player.Inventory.Lemon.Amount} {player.Inventory.Lemon.Name}\n{player.Inventory.Sugar.Amount} {player.Inventory.Sugar.Name}\n{player.Inventory.Ice.Amount} {player.Inventory.Ice.Name}");
 
+        }
+        private void RunDay()
+        {
+            Console.WriteLine("Let the day begin!");
+            foreach(Customer customer in day.Customers)
+            {
+                customer.BuyLemonade(random, day, player);
+                if(CheckForSellout())
+                {
+                    break;
+                }
+
+
+            }
+
+        }
+        private bool CheckForSellout()
+        {
+            if (player.Inventory.Cup.Amount < 0)
+            {
+                Console.WriteLine($"Sold out of {player.Inventory.Cup.Name}..");
+                player.Inventory.Cup.Amount = 0;
+                return true;
+            }
+            if (player.Inventory.Lemon.Amount < 0)
+            {
+                Console.WriteLine($"Sold out of {player.Inventory.Lemon.Name}..");
+                player.Inventory.Lemon.Amount = 0;
+                return true;
+            }
+            if (player.Inventory.Sugar.Amount < 0)
+            {
+                Console.WriteLine($"Sold out of {player.Inventory.Sugar.Name}..");
+                player.Inventory.Sugar.Amount = 0;
+                return true;
+            }
+            if (player.Inventory.Ice.Amount < 0)
+            {
+                Console.WriteLine($"Sold out of {player.Inventory.Ice.Name}..");
+                player.Inventory.Ice.Amount = 0;
+                return true;
+            }
+            return false;
         }
     }
 }
