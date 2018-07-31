@@ -77,12 +77,34 @@ namespace LemonadeStand
 
         public void SetPriceOfLemonade()
         {
-            Console.WriteLine($"How much would you like your lemonade to cost? It currently costs ${PriceOfLemonade}");
-            PriceOfLemonade = double.Parse(Console.ReadLine());
-            Console.WriteLine($"Lemonade is now ${PriceOfLemonade}.");
-            // Add validation to this method
+            bool changePrice = WantsToChangePrice();
+            if (changePrice)
+            {
+                PriceOfLemonade = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Lemonade is now ${PriceOfLemonade}.");
+            }
+
 
         }
+        private bool WantsToChangePrice()
+        {
+            string changePriceInput;
+            Console.WriteLine($"The price for your lemonade is ${PriceOfLemonade}.");
+            Console.WriteLine("Do you want to change the price? [1]Yes or [2]No");
+            changePriceInput= Console.ReadLine();
+
+            switch (changePriceInput)
+            {
+                case "1":
+                    return true;
+                case "2":
+                    return false;
+                default:
+                    Console.WriteLine("Invalid input. Please choose [1]Yes or [2]No");
+                    return WantsToChangePrice();
+            }
+        }
+
         public int BuyFood(Item item)
         {
             int amountToBuy;
