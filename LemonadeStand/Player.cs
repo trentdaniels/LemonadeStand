@@ -101,8 +101,10 @@ namespace LemonadeStand
             switch (changePriceInput)
             {
                 case "1":
+                    Console.WriteLine("What would you like to change the price to?");
                     return true;
                 case "2":
+                    Console.WriteLine($"Lemonade price will remain at ${PriceOfLemonade}.");
                     return false;
                 default:
                     UserInterface.DisplayErrorMessage();

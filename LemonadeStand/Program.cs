@@ -4,14 +4,13 @@ namespace LemonadeStand
 {
     class MainClass
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             
             Game game = new Game();
             bool playAgain;
             do
             {
-                
                 game.SetUpGame();
                 game.RunGame();
                 game.RunEndGame();

@@ -20,7 +20,8 @@ namespace LemonadeStand
         }
         public static void DisplayDayResults(Player player, Day day)
         {
-            Console.WriteLine($"At the end of {day.DayNumber}, {player.Name} now has ${player.Inventory.AvailableMoney} from your original {player.Inventory.BeginningDayMoney}.");
+            Console.WriteLine($"At the end of {day.DayNumber}, {player.Name} now has ${player.Inventory.AvailableMoney} from your original ${player.Inventory.BeginningDayMoney}.");
+            Console.WriteLine($"Your net profit for the day is ${player.Inventory.AvailableMoney - player.Inventory.BeginningDayMoney}");
             Console.WriteLine($"{player.Name} also has:\n{player.Inventory.Cup.Amount} {player.Inventory.Cup.Name}\n{player.Inventory.Lemon.Amount} {player.Inventory.Lemon.Name}\n{player.Inventory.Sugar.Amount} {player.Inventory.Sugar.Name}\n{player.Inventory.Ice.Amount} {player.Inventory.Ice.Name}");
             Console.WriteLine($"{day.BuyingCustomers} out of {day.Customers.Count} customers bought your lemonade.");
         }
@@ -48,7 +49,7 @@ namespace LemonadeStand
         {
             int temperature = day.Weather.Temperature;
             string forecast = day.Weather.Forecast;
-            Console.WriteLine($"Day {day.DayNumber}'s weather is {temperature} degrees and {forecast}.");
+            Console.WriteLine($"Day {day.DayNumber}'s actual weather is {temperature} degrees and {forecast}.");
         }
 
         public static List<Player> CreatePlayers()
@@ -96,6 +97,10 @@ namespace LemonadeStand
         public static void DisplayTotalGameDays(int gameDays)
         {
             Console.WriteLine($"The game will be run for a total of {gameDays} days.");
+        }
+        public static void DisplayForecast(Day day)
+        {
+            Console.WriteLine($"Today's forecast is a high of {day.Weather.ForecastedHigh} degrees and low of {day.Weather.ForecastedLow} degrees.");
         }
     }
 }

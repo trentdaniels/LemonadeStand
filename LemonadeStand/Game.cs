@@ -38,13 +38,15 @@ namespace LemonadeStand
             for (int i = 1; i <= daysOfGameplay; i++)
             {
                 day = new Day(random);
+                UserInterface.DisplayForecast(day);
                 day.DayNumber = i;
-                UserInterface.DisplayWeather(day);
+
                 day.CreateCustomers(random);
                 foreach (Player player in players)
                 {
                     UserInterface.DisplayInventory(player);
                     RunStore();
+                    UserInterface.DisplayWeather(day);
                     RunRecipe();
                     RunDay();
                     UserInterface.DisplayDayResults(player, day);

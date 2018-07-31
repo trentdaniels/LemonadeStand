@@ -53,7 +53,6 @@ namespace LemonadeStand
         {
             weather = new Weather(random);
             buyingCustomers = 0;
-
         }
 
         // Methods
