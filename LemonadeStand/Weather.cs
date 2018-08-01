@@ -68,8 +68,6 @@ namespace LemonadeStand
             {
                 case 0:
                     return true;
-                case 1:
-                    return false;
                 default:
                     return false;
             }
@@ -78,12 +76,8 @@ namespace LemonadeStand
         {
             if(!WillWeatherComeTrue(random))
             {
-                if (forecastedWeatherType == "sunny")
-                {
-                    WeatherType = "clear";
-                    return;
-                }
-                WeatherType = possibleForecasts[possibleForecasts.IndexOf(forecastedWeatherType) - 1];
+                
+                WeatherType = possibleForecasts[random.Next(0, possibleForecasts.Count)];
                 return;
             }
             WeatherType = forecastedWeatherType;
