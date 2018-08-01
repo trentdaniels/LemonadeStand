@@ -51,7 +51,6 @@
     <Compile Include="Customer.cs" />
     <Compile Include="UserInterface.cs" />
     <Compile Include="WeatherAPI.cs" />
-    <Compile Include="MyData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
