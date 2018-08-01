@@ -12,7 +12,10 @@ namespace LemonadeStand
         private int forecastedLow;
         private int forecastedHigh;
         private string forecastedWeatherType;
+        private WeatherAPI weatherAPI;
 
+
+        public WeatherAPI WeatherAPI { get => weatherAPI; }
         public string WeatherType
         {
             get => weatherType;
@@ -49,10 +52,11 @@ namespace LemonadeStand
         // Constructors
         public Weather(Random random)
         {
+            weatherAPI = new WeatherAPI();
             possibleForecasts = new List<string>() { "sunny", "rainy", "cloudy", "clear" };
             forecastedWeatherType = possibleForecasts[random.Next(0, possibleForecasts.Count)];
-            forecastedLow = random.Next(50, 75);
-            forecastedHigh = random.Next(75, 100);
+            forecastedLow = WeatherAPI.ApiForecastedLow;
+            forecastedHigh = WeatherAPI.ApiForecastedHigh;
             temperature = random.Next(forecastedLow, forecastedHigh);
             HandleWeather(random);
 
