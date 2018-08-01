@@ -13,20 +13,23 @@ namespace LemonadeStand
         private int apiForecastedHigh;
         private int apiForecastedLow;
         private int apiTemperature;
-
+        private string apiForecast;
+        private JObject json;
         public int ApiForecastedHigh { get => apiForecastedHigh; }
         public int ApiForecastedLow { get => apiForecastedLow; }
         public int ApiTemperature { get => apiTemperature; }
+        public string ApiForecast { get => apiForecast;  }
 
 
         // Constructors
         public WeatherAPI()
         {
             GetWeather();
+            SetApiWeather();
         }
 
         // Methods
-        public void GetWeather()
+        private void GetWeather()
         {
             HttpWebRequest request;
             HttpWebResponse response;
@@ -39,15 +42,17 @@ namespace LemonadeStand
             StreamReader streamReader = new StreamReader(stream);
             responseDataString = streamReader.ReadToEnd();
 
-            JObject json = JObject.Parse(responseDataString);
+            json = JObject.Parse(responseDataString);
 
-            //string date = (string)json["query"]["created"];
+
+        }
+        private void SetApiWeather() 
+        {
             apiTemperature = int.Parse((string)json["query"]["results"]["channel"]["item"]["condition"]["temp"]);
             apiForecastedLow = int.Parse((string)json["query"]["results"]["channel"]["item"]["forecast"][0]["low"]);
             apiForecastedHigh = int.Parse((string)json["query"]["results"]["channel"]["item"]["forecast"][0]["high"]);
-
+            apiForecast = (string)json["query"]["results"]["channel"]["item"]["condition"]["text"];
         }
-
 
     }
 }

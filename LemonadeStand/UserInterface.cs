@@ -100,7 +100,7 @@ namespace LemonadeStand
         }
         public static void DisplayForecast(Day day)
         {
-            Console.WriteLine($"Day {day.DayNumber}'s forecast is a high of {day.Weather.ForecastedHigh} degrees and low of {day.Weather.ForecastedLow} degrees. It looks {day.Weather.ForecastedWeatherType}.");
+            Console.WriteLine($"Day {day.DayNumber}'s forecast is a high of {day.Weather.WeatherAPI.ApiForecastedHigh} degrees and low of {day.Weather.WeatherAPI.ApiForecastedLow} degrees with a chance of {day.Weather.WeatherAPI.ApiForecast}");
         }
     }
 }
