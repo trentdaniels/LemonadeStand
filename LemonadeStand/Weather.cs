@@ -84,7 +84,22 @@ namespace LemonadeStand
                 WeatherType = possibleForecasts[random.Next(0, possibleForecasts.Count)];
                 return;
             }
-            WeatherType = forecastedWeatherType;
+            if (WeatherAPI.ApiForecast.ToLower().Contains("shower") || WeatherAPI.ApiForecast.ToLower().Contains("storm"))
+            {
+                WeatherType = "rainy";
+                return;
+            }
+            if (WeatherAPI.ApiForecast.ToLower().Contains("sun"))
+            {
+                WeatherType = "sunny";
+                return;
+            }
+            if (WeatherAPI.ApiForecast.ToLower().Contains("cloud"))
+            {
+                WeatherType = "cloudy";
+                return;
+            }
+            WeatherType = "clear";
         }
     }
 }
