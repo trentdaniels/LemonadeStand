@@ -105,7 +105,7 @@ namespace LemonadeStand
             lemon = new Lemon();
             sugar = new Sugar();
             cup = new Cup();
-            beginningMoney = 20.00;
+            beginningMoney = 25.00;
             availableMoney = beginningMoney;
             beginningDayMoney = availableMoney;
         }
