@@ -16,11 +16,11 @@ namespace LemonadeStand
             string positiveNegative = netProfit > 0 ? "+" : "-";
             Console.WriteLine($"{player.Name} began with ${player.Inventory.BeginningMoney}, and you now have ${player.Inventory.AvailableMoney}.");
             Console.WriteLine($"{player.Name} had a total gain of ${player.Inventory.TotalGain} and a total loss of {player.Inventory.TotalLoss}.");
-            Console.WriteLine($"{player.Name}'s net profit is {netProfit} for a {positiveNegative}{player.Inventory.AvailableMoney / player.Inventory.BeginningMoney}% change.");
+            Console.WriteLine($"{player.Name}'s net profit is {netProfit} for a {positiveNegative}{(player.Inventory.AvailableMoney / player.Inventory.BeginningMoney) * 100}% change.");
         }
         public static void DisplayDayResults(Player player, Day day)
         {
-            Console.WriteLine($"At the end of day {day.DayNumber}, {player.Name} now has ${player.Inventory.AvailableMoney} from your original ${player.Inventory.BeginningDayMoney}.");
+            Console.WriteLine($"At the end of day {day.DayNumber}, {player.Name} now has ${Math.Round(player.Inventory.AvailableMoney,2)} from your original ${player.Inventory.BeginningDayMoney}.");
             Console.WriteLine($"Your net profit for the day is ${Math.Round(player.Inventory.AvailableMoney - player.Inventory.BeginningDayMoney, 2)}");
             Console.WriteLine($"{player.Name} also has:\n{player.Inventory.Cup.Amount} {player.Inventory.Cup.Name}\n{player.Inventory.Lemon.Amount} {player.Inventory.Lemon.Name}\n{player.Inventory.Sugar.Amount} {player.Inventory.Sugar.Name}\n{player.Inventory.Ice.Amount} {player.Inventory.Ice.Name}");
             Console.WriteLine($"{day.BuyingCustomers} out of {day.Customers.Count} customers bought your lemonade.");
