@@ -14,7 +14,7 @@ namespace LemonadeStand
         {
             double netProfit = player.Inventory.AvailableMoney - player.Inventory.BeginningMoney;
             string positiveNegative = netProfit > 0 ? "+" : "-";
-            Console.WriteLine($"{player.Name} began with ${player.Inventory.AvailableMoney}, and you now have ${player.Inventory.AvailableMoney}.");
+            Console.WriteLine($"{player.Name} began with ${player.Inventory.BeginningMoney}, and you now have ${player.Inventory.AvailableMoney}.");
             Console.WriteLine($"{player.Name} had a total gain of ${player.Inventory.TotalGain} and a total loss of {player.Inventory.TotalLoss}.");
             Console.WriteLine($"{player.Name}'s net profit is {netProfit} for a {positiveNegative}{player.Inventory.AvailableMoney / player.Inventory.BeginningMoney}% change.");
         }
